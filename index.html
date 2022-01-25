@@ -21,6 +21,10 @@
           </div>
         </header>
         <section class="img_section">
+          <div>
+            <img src="assets/galaxy1.jpg" alt="Pinwheel galaxy" />
+            <p>An example of a spiral galaxy, the Pinwheel Galaxy (also known as Messier 101 or NGC 5457)</p>
+          </div>
           <p>Spiral galaxies form a class of galaxy originally described by Edwin Hubble in his 1936 work The Realm of the Nebulae<a href="#ref"><sup>[1]</sup></a> and, as such, form part of the Hubble sequence. Most spiral galaxies consist of a flat, rotating disk containing stars, gas and dust, and a central concentration of stars known as the bulge. These are often surrounded by a much fainter halo of stars, many of which reside in globular clusters.
   
             Spiral galaxies are named by their spiral structures that extend from the center into the galactic disc. The spiral arms are sites of ongoing star formation and are brighter than the surrounding disc because of the young, hot OB stars that inhabit them.
@@ -30,11 +34,7 @@
             The Milky Way is a barred spiral, although the bar itself is difficult to observe from Earth's current position within the galactic disc.<a href="#ref"><sup>[4]</sup></a> The most convincing evidence for the stars forming a bar in the galactic center comes from several recent surveys, including the Spitzer Space Telescope.<a href="#ref"><sup>[5]</sup></a>
             
             Together with irregular galaxies, spiral galaxies make up approximately 60% of galaxies in today's universe.<a href="#ref"><sup>[6]</sup></a> They are mostly found in low-density regions and are rare in the centers of galaxy clusters.<a href="#ref"><sup>[7]</sup></a></p>
-          <div>
-            <img src="assets/galaxy1.jpg" alt="Pinwheel galaxy" />
-            <p>An example of a spiral galaxy, the Pinwheel Galaxy (also known as Messier 101 or NGC 5457)</p>
-          </div>
-          </section>
+        </section>
         <section class="with-images">
           <div class="content">
             <h2>Structure</h2>
@@ -252,16 +252,15 @@
 
         camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
         camera.position.setZ(0);
-        camera.position.setX(0);
 
-        Array(400).fill().forEach(addStar);
+        Array(300).fill().forEach(addStar);
 
         renderer = new THREE.WebGLRenderer({antialias: true});
         renderer.setPixelRatio(window.devicePixelRatio);
         renderer.setSize(window.innerWidth, window.innerHeight);
         document.body.appendChild(renderer.domElement);
 
-        const ambientLight = new THREE.AmbientLight(0xffffff);
+        const ambientLight = new THREE.AmbientLight(0xEBA271);
         scene.add(ambientLight);
 
         const renderScene = new RenderPass( scene, camera );
@@ -292,10 +291,14 @@
       }
 
       function onWindowScroll() {
+        var point = new THREE.Vector3(0, 0, 0);
+        camera.lookAt(point);
         const t = document.body.getBoundingClientRect().top;
-        camera.position.z = t * -0.001;
-        camera.position.x = t * -0.0004;
-        camera.position.y = t * -0.0008;
+        camera.rotateY(t * 0.00008);
+
+        //camera.position.z = t * -0.001;
+        //camera.position.x = t * -0.0004;
+        //camera.position.y = t * -0.0008;
       }
 
       function onWindowResize() {
