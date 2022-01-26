@@ -119,6 +119,12 @@ section>div.images {
   width: 25%;
 }
 
+.images>card {
+  text-align: center;
+  font-style: italic;
+  font-size: 1rem;
+}
+
 section>div>card>img {
   width: 100%;
   object-fit: contain;
@@ -141,6 +147,9 @@ section>div>card>img {
   margin-bottom: 2rem;
   margin-left: 4rem;
   float: right;
+  text-align: center;
+  font-style: italic;
+  font-size: 1rem;
 }
 
 .img_section>div>img {
